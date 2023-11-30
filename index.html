@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fanny Adventskalender</title>
+<style>
+html {
+  background: #e6f2f7; 
+}
+ol {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+  color: black;
+  max-width: 120rem;
+  margin: 1rem auto;
+  padding: 0 1rem;  
+  counter-reset: my-awesome-counter;
+  list-style: none;  
+}
+@media (min-width: 80rem) { /* 4x6 */ 
+  ol {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media (min-width: 120rem) { /* 6x4 */ 
+  ol {
+    grid-template-columns: repeat(6, 1fr);
+  } 
+}
+li {
+  padding: 1rem;
+  border: 1px solid #c32e04;
+  background: #e6f2f7; 
+  counter-increment: my-awesome-counter;
+  position: relative;
+  min-height: 10em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+li::before {
+  --size: 2rem;
+  content: counter(my-awesome-counter);
+  position: absolute;
+  color: #e6f2f7; 
+  font-size: calc(var(--size) * .75);
+  font-weight: bold;
+  right: calc(var(--size) * .25);
+  top: calc(var(--size) * .25);
+  line-height: var(--size);
+  width: var(--size);
+  height: var(--size);
+  padding: calc(var(--size) * .2);
+  transform: rotate(-10deg);
+  background: #c32e04;
+  border-radius: 50%;
+  text-align: center;
+  box-shadow: 1px 1px 0 #999;
+}
+
+li,
+li a {
+  color: transparent;
+  transition: all 0.5s;
+  text-decoration: none;
+}
+li:hover,
+li a:hover, li a:focus { 
+  color: black; 
+  transition: all 0.5s;
+}
+li a:hover, li a:focus, li.open a {
+  color: #306f91 
+}
+h1 {
+  font-size: 3rem;  
+  text-align: center;
+  color: #306f91;
+  max-width: 120rem;
+  padding: 0 1rem;
+  margin: 0 auto;
+}
+ 
+h1 a {
+  vertical-align: -1.5rem;
+  margin-right: 1rem;
+}
+li > p, li > a.ads {
+  text-align: center;
+}
+a.ads {
+  width: 100%;
+  padding: 3rem 0;
+}
+li h2, li p:first-child {
+  margin-top: 0;
+}
+li p:last-child {
+  margin-bottom: 0;
+}
+li:nth-of-type(1) {
+  order: 5;
+}
+li:nth-of-type(4) {
+  order: 7;
+}
+li:nth-of-type(5) {
+  order: 21;
+}
+li:nth-of-type(6) {
+  order: 18;
+}
+li:nth-of-type(8) {
+  order: 5;
+}
+li:nth-of-type(9) {
+  order: 7;
+}
+li:nth-of-type(10) {
+  order: 21;
+}
+li:nth-of-type(12) {
+  order: 18;
+}
+li:nth-of-type(14) {
+  order: 5;
+}
+li:nth-of-type(16) {
+  order: 7;
+}
+li:nth-of-type(21) {
+  order: 2;
+}
+li:nth-of-type(22) {
+  order: 18;
+}
+</style>
+<script>
+  function setOpenDays () {
+    if (localStorage) {
+      for (let k = 1; k < 25; k++) {
+        if (localStorage.getItem('SELFday'+k)) {
+          document.querySelector('li:nth-child('+k+')').classList.add('open');
+        }
+      }
+    }
+  }
+  function saveTheDoor (event) {
+    let elem = event.target,
+        listitem = elem.closest('li'),
+        list = elem.closest('ol'),
+        day = Array.prototype.indexOf.call(list.children, listitem) + 1;
+    listitem.classList.add('open');
+    if (localStorage) {
+      localStorage.setItem('SELFday'+day,'open');
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', setOpenDays);
+  document.addEventListener('DOMContentLoaded', function () {
+    let labels = document.querySelectorAll('li:not(.open) a:not(.ads)');
+    for (let label of labels) {
+      label.addEventListener('click', saveTheDoor);
+    }
+  });
+</script>
+</head>
+<body>
+  <h1>Fannys Musikalischer Adventskalender</h1>
+
+  <ol>
+    <li>
+      <a href="01.html">
+        <h2>Melancholie</h2>
+        <p>Mamas</p>
+      </a>
+    </li>
+    <li><a href="https://forum.selfhtml.org/self/2018/mar/27/footer-immer-ganz-unten/1717543#m17175430">
+      <h2>Feststehender Footer</h2>
+      <p>von Gunnar Bittersmann am 27.3.2018</p>
+      <p class="teaser">Wenn Header und Footer ständig im Viewport bleiben sollen, dann ist position:&nbsp;sticky das Mittel der Wahl. </p>
+    </a></li>
+    <li><a href="https://forum.selfhtml.org/self/2019/jun/22/mathematik-zur-veroffentlichung-von-version-5-der-forumssoftware/1750933#m1750933">
+      <h2>Quintupelspielerereien</h2>
+      <p>von Matthias Apsel am 22.6.2019</p>
+      <p class="teaser">Aus Anlass der Veröffentlichung von V5 unseres Forums eine mathematische Spielerei.</p></a></li>
+    <li><a href="https://forum.selfhtml.org/self/2019/jun/5/speisekarte-mit-punkte-zwischen-speisen-und-punkt-punkt-punkt-preis/1750026#m1750026">
+      <h2>Speisekarte mit Punkten</h2>
+      <p>von Gunnar Bittersmann am 05.06.2019</p>
+      <p class="teaser">Eine Beschreibungsliste (description list dl), deren Elemente jeweils links und rechts zentriert und durch Punkte verbunden sind.</p></a></li>
+    <li><a href="https://forum.selfhtml.org/self/2018/jan/7/problem-mit-css-grid/1711672#m1711672">
+      <h2>Ausklappbare Navigation</h2>
+      <p>von Gunnar Bittersmann am 09.01.2018</p>
+      <p class="teaser">Eine Navigation (nav ul), die auf kleinen Viewports hinter einem Button verschwindet.</p></a></li>
+    <li><a href="https://forum.selfhtml.org/self/2018/sep/15/text-anordnen/1732000#m1732000">
+      <h2>Header links neben Text</h2>
+      <p>von Gunnar Bittersmann am 15.09.2018</p>
+      <p class="teaser">Ein Header mit einem teaser, der mit Grid links neben dem Haupttext angeordnet wird.</p></a></li>
+    <li><a href="https://forum.selfhtml.org/self/2018/jul/26/frage-zum-wiki-artikel-border/1727371#m1727371">
+      <h2>Überschrift mit Rand</h2>
+      <p>von Gunnar Bittersmann am 26.07.2018</p>
+      <p class="teaser">Eine Überschrift, deren Rand nur so lang wie der Inhalt ist &rarr; geht mit <code>max-width: max-content</code></p></a></li>
+    <li><a href="https://forum.selfhtml.org/self/2019/feb/8/mathematik-zum-wochenende/1742252#m1742252">
+      <h2>Geraden in der Ebene</h2>
+      <p>von Matthias Apsel am 08.02.2018</p>
+      <p class="teaser">In wieviele Gebiete kann eine Ebene durch <em>n</em> Geraden geteilt werden?</p></a></li>
+    <li><a href="https://forum.selfhtml.org/self/2018/jan/5/grafik-zerstoert-meinen-read-more-code/1711399#m1711399">
+      <h2>"read-More"-Toggle</h2>
+      <p>von Gunnar Bittersmann am 05.01.2018</p>
+      <p class="teaser">Ein Umschalter, der per CSS weiteren Text / Listenelemente ein- und ausblendet.</p></a></li>
+    <li><a href="https://forum.selfhtml.org/self/2018/sep/25/display-flex-der-standardwert-und-andere-begrifflichkeiten/1733067#m1733067">
+      <h2>Flexbox-Achsen</h2>
+      <p>von Gunnar Bittersmann am 28.09.2018</p>
+      <p class="teaser">Ob die Blockachse vertikal oder horizontal ist, hängt einerseits von der Schreibrichtung (writing-mode) ab, andererseits natürlich auch von flex-direction.</p></a></li>
+    <li><a href="https://forum.selfhtml.org/self/2018/aug/25/kalender-tagesansicht/1729983#m1729983">
+      <h2>Terminkalender</h2>
+      <p>von Gunnar Bittersmann am 25.08.2018</p>
+      <p class="teaser">Ein Terminkalender mit grid, der die Termine automatisch anordnet; sich nicht überlappende Termine sind untereinander, es werden nur so viele Spalten beansprucht wie nötig.</p></a></li>
+    <li><a href="https://forum.selfhtml.org/self/2019/oct/29/trenne-niemals-st/1759449#m1759449">
+      <h2>Checkbox und Label</h2>
+      <p>von Rolf B. am 29.10.2019</p>
+      <p class="teaser">Checkboxen, die mit ihrer Beschriftung immer in einer Zeile bleiben.</p></a></li>
+    <li><a href="https://blog.zeit.de/mathe/allgemein/freitag-13-aberglaube-mathe/">
+      <h2>Freitag, der 13.</h2>
+      <p>von Christian Hesse, zeit.de</p>
+      <p class="teaser">Der längste Abstand zwischen zwei solchen Freitagen beträgt 61 Wochen - zum Beispiel von Oktober '18 bis ?</p></a></li>
+    <li><a href="https://forum.selfhtml.org/self/2019/nov/03/tabellenspalte-bei-hover-markieren/1759706#m1759706">
+      <h2>Tabellenspalten markieren</h2>
+      <p>von Gunnar Bittersmann am 4.11.2019</p>
+      <p class="teaser">Im verlinkten Thread gibt es mehrere Beispiele, wie sich Tabellenspalten bei :hover markieren lassen.</p></a></li>
+    <li><a href="https://forum.selfhtml.org/self/2018/nov/3/programmierung-zum-wochenende/1735656#m1735656">
+      <h2>Two Prisoners In Paradise</h2>
+      <p>von Matthias Apsel am 3.11.2018</p>
+      <p class="teaser">Die Gefangenen stellen sich im Kreis auf und durch fortlaufendes Abzählen wird jeder dritte wieder in die Zelle zurückgeschickt.
+      </p></a></li>
+    <li><a href="https://wiki.selfhtml.org/wiki/HTML/Tutorials/Formulare/Buttons_und_Schalter#Vor.C3.BCberlegungen">
+      <h2>Buttons gestalten</h2>
+      <p>von Gunnar Bittersmann am 24.02.2019</p>
+      <p class="teaser">Vielleicht nicht die beste Idee, einen Button nicht aussehen zu lassen wie einen Button.
+      </p></a></li>
+    <li><a href="https://wiki.selfhtml.org/wiki/CSS/Tutorials/Zitate_interessant_gestalten#Blockzitat_mit_Zierelementen">
+      <h2>Blockzitat mit Zierelementen</h2>
+      <p>von Gunnar Bittersmann am 19.01.2018</p>
+      <p class="teaser">SVG zur Hilfe! Damit kriegt man schnell zwei Linien hin und auch das Anführungszeichen dazwischen.
+      </p></a></li>
+    <li><a href="https://wiki.selfhtml.org/wiki/CSS/Tutorials/Flexbox/Feststehender_Footer#Feste_Breite_mit_flexiblem_padding">
+      <h2>feste Breite mit flexiblem Padding</h2>
+      <p>von Gunnar Bittersmann am 17.12.2018</p>
+      <p class="teaser">header kann links und rechts padding haben und Flexbox sein.</p></a></li>
+    <li><a href="https://wiki.selfhtml.org/wiki/HTML/Tutorials/Links/Gestaltung_mit_CSS#Alternative:_klickbare_Fl.C3.A4che_durch_Pseudoelement_vergr.C3.B6.C3.9Fern">
+      <h2>klickbare Flächen vergrößern</h2>      
+      <p>von Gunnar Bittersmann am 27.02.2018</p>
+      <p class="teaser">Die klickbare Fläche wird dann mit absolut positioniertem a::after-Pseudoelement auf die Größe der Box ausgedehnt werden.</p></a></li>
+    <li><a href="https://forum.selfhtml.org/self/2019/jul/26/struktur-barrierefreier-formulare/1753845#m1753845">
+<h2>Barrierefreie Formulare</h2>
+      <p>von Gunnar Bittersmann am 26.07.2019</p>
+      <p class="teaser">Die Spec verbietet nicht details in label; details ist ja kein labelable element.</p></a></li>
+    <li><a href="https://wiki.selfhtml.org/wiki/HTML/Web_Components/custom_elements#Listen_im_Tabellen-Look">
+<h2>Listen im Tabellen-Look</h2>
+      <p>von Gunnar Bittersmann am 30.03.2019</p>
+      <p class="teaser">Listen lassen sich wie Tabellen stylen. Custom Elements sorgen dafür, dass die Adressen untereinander stehen.</p></a></li>
+
+    <li><a href="https://wiki.selfhtml.org/wiki/HTML/Tutorials/Adventskalender">
+<h2>Adventskalender-Tutorial</h2>
+      <p>von Matthias Scharwies</p>
+      <p class="teaser">Wie baut man eigentlich so einen Adventskalender?</p></a></li>
+
+    <li><a href="https://wiki.selfhtml.org/wiki/PHP/Tutorials/Adventskalender">
+<h2>Adventskalender-Tutorial&nbsp;Teil 2</h2>
+      <p>von Matthias Apsel</p>
+      <p class="teaser">die Komfort-Variante unseres Adventskalenders mit PHP</p></a></li>
+    <li><a href="https://blog.selfhtml.org/2019/12/24/selfhtml-bedankt-sich-fuer-spenden-im-jahr-2019/">
+    <h2>SELFHTML sagt Dankeschön.</h2>
+    <p>von Matthias Apsel</p>
+    <p class="teaser">für eine Reihe von Zuwendungen und Fördermitgliedschaften</p></a></li>
+
+  </ol>
+
+</body>
+</html></title>
+</head>
+<body>
+
+</body>
+</html>
